@@ -2,6 +2,7 @@ import discord
 import asyncio
 import datetime
 import threading
+import os
 
 client = discord.Client()
 #channel = ''
@@ -16,7 +17,7 @@ radelFlag = False
 nowTimeString = '1'
 
 # 1-6에서 생성된 토큰을 이곳에 입력해주세요.
-token = "NjYxODkzNjc0MDIzNTE4MjQ3.XgyCww.wn4LRM16yUvfP2L87GRWvj4QEDU"
+token = os.environ["BOT_TOKEN"]
 
 async def my_background_task():
     await client.wait_until_ready()
