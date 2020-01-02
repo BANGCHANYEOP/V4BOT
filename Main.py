@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-
+import os
 import asyncio
 import discord
 import datetime
 import threading
+
 
 '''
 import sys 
@@ -110,7 +111,7 @@ init()
 
 nowTimeString = '1'
 
-token = 'NjYxODkzNjc0MDIzNTE4MjQ3.Xg3a_Q.dyXJTPliOmp42u5bhqR90vlybho'
+#token = 'NjYxODkzNjc0MDIzNTE4MjQ3.Xg3a_Q.dyXJTPliOmp42u5bhqR90vlybho'
 print (basicSetting[0])
 
 async def my_background_task():
@@ -397,5 +398,5 @@ async def on_message(message):
     if message.content.startswith('!현재시간'):
         await message.channel.send(datetime.datetime.now().strftime('%H:%M:%S'))
 
-
+token=os.environ["BOT_TOKEN"]
 client.run(token)
