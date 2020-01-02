@@ -394,7 +394,7 @@ async def on_message(message):
         file = open("my_bot.db", 'w')
         file.write(information);
         file.close()
-
+##
     if message.content.startswith('!현재시간'):
         await message.channel.send(datetime.datetime.now().strftime('%H:%M:%S'))
 
