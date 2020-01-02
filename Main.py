@@ -150,6 +150,7 @@ async def my_background_task():
                 if bossTime[i] <= priv:
                     if bossFlag[i] == False:
                         bossFlag[i] = True
+
                         await client.send_message(channel,
                                                   bossData[i][0] + ' ' + basicSetting[1] + '분 전 ' + bossData[i][3],
                                                   tts=True)
@@ -345,10 +346,10 @@ async def on_message(message):
                         bossTime[j] = now2
                         bossTimeString[j] = bossTime[j].strftime('%H:%M:%S')
             file.close()
-            await client.send_message(channel, '<불러오기 완료>')
+            await message.channel.send('<불러오기 완료>')
             print("<불러오기 완료>")
         except IOError:
-            await client.send_message(channel, '<보스타임 정보가 없습니다.>')
+            await message.channel.send('<보스타임 정보가 없습니다.>')
             print("보스타임 정보가 없습니다.")
 
     if message.content.startswith('!보스탐'):
