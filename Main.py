@@ -50,7 +50,7 @@ def init():
     tmp_bossData = []
     f = []
 
-    inidata = open("test_setting.ini", 'r', encoding='utf-8')
+    inidata = open('test_setting.ini', 'r', encoding='utf-8')
 
     inputData = inidata.readlines()
 
