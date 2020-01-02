@@ -134,7 +134,7 @@ async def my_background_task():
     global bossMungFlag
     global bossMungCnt
 
-    while not client.is_closed:
+    while not client.is_closed():
         now = datetime.datetime.now()
         priv = now + datetime.timedelta(minutes=int(basicSetting[1]))
         privTimeString = priv.strftime('%H:%M:%S')
@@ -151,9 +151,7 @@ async def my_background_task():
                     if bossFlag[i] == False:
                         bossFlag[i] = True
 
-                        await client.send_message(channel,
-                                                  bossData[i][0] + ' ' + basicSetting[1] + '분 전 ' + bossData[i][3],
-                                                  tts=True)
+                        await channel.send(bossData[i][0] + ' ' + basicSetting[1] + '분 전 ' + bossData[i][3])
 
                 if bossTime[i] <= now:
                     # print ('if ', bossTime[i])
@@ -165,30 +163,28 @@ async def my_background_task():
                     tmp_bossTime[i] = bossTime[i]
                     bossTimeString[i] = '99:99:99'
                     bossTime[i] = now + datetime.timedelta(days=365)
-                    await client.send_message(channel, bossData[i][0] + '탐 ' + bossData[i][4], tts=True)
+                    await channel.send(channel, bossData[i][0] + '탐 ' + bossData[i][4])
 
                 if bossMungFlag[i] == True:
                     if (bossTime[i] + datetime.timedelta(days=-365)) <= aftr:
                         if bossData[i][2] == '0':
-                            await client.send_message(channel, bossData[i][0] + ' 미입력 됐습니다.')
+                            await channel.send(bossData[i][0] + ' 미입력 됐습니다.')
                             bossFlag[i] = False
                             bossMungFlag[i] = False
                             bossMungCnt[i] = bossMungCnt[i] + 1
                             bossTime[i] = nextTime = now + datetime.timedelta(hours=int(bossData[i][1]), minutes=int(
                                 0 - int(basicSetting[2]) + int(bossData[i][5])))
                             tmp_bossTimeString[i] = bossTimeString[i] = nextTime.strftime('%H:%M:%S')
-                            await client.send_message(channel,
-                                                      '다음 ' + bossData[i][0] + ' ' + bossTimeString[i] + '입니다.')
+                            await channel.send('다음 ' + bossData[i][0] + ' ' + bossTimeString[i] + '입니다.')
                         else:
-                            await client.send_message(channel, bossData[i][0] + ' 멍 입니다.')
+                            await channel.send(bossData[i][0] + ' 멍 입니다.')
                             bossFlag[i] = False
                             bossMungFlag[i] = False
                             bossMungCnt[i] = bossMungCnt[i] + 1
                             bossTime[i] = nextTime = now + datetime.timedelta(hours=int(bossData[i][1]), minutes=int(
                                 0 - int(basicSetting[2]) + int(bossData[i][5])))
                             tmp_bossTimeString[i] = bossTimeString[i] = nextTime.strftime('%H:%M:%S')
-                            await client.send_message(channel,
-                                                      '다음 ' + bossData[i][0] + ' ' + bossTimeString[i] + '입니다.')
+                            await channel.send('다음 ' + bossData[i][0] + ' ' + bossTimeString[i] + '입니다.')
 
         await asyncio.sleep(1)  # task runs every 60 seconds
 
@@ -280,12 +276,12 @@ async def on_message(message):
             print('<' + bossData[i][0] + ' 삭제완료>')
 
     if message.content.startswith('!오빠'):
-        await client.send_message(channel, '오빠달려려어어어어어어 ', tts=True)
+        await message.channel.send('오빠달려려어어어어어어 ')
 
     if message.content.startswith('!v') or message.content.startswith('!ㅍ'):
         tmp_sayMessage = message.content
         sayMessage = tmp_sayMessage[3:]
-        await client.send_message(channel, "<@" + id + ">님이 \"" + sayMessage + "\"", tts=True)
+        await client.send_message(channel, "<@" + id + ">님이 \"" + sayMessage + "\"")
     if message.content.startswith('!명치'):
         client.logout()
         client.run(token)
