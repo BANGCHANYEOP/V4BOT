@@ -163,7 +163,7 @@ async def my_background_task():
                     tmp_bossTime[i] = bossTime[i]
                     bossTimeString[i] = '99:99:99'
                     bossTime[i] = now + datetime.timedelta(days=365)
-                    await channel.send(channel, bossData[i][0] + '탐 ' + bossData[i][4])
+                    await channel.send(bossData[i][0] + '탐 ' + bossData[i][4])
 
                 if bossMungFlag[i] == True:
                     if (bossTime[i] + datetime.timedelta(days=-365)) <= aftr:
