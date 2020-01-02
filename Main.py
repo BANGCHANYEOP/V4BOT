@@ -146,7 +146,7 @@ async def my_background_task():
 
         if channel != '':
             for i in range(bossNum):
-                # print (bossData[i][0], bossTime[i])
+                print (bossData[i][0], bossTime[i])
                 if bossTime[i] <= priv:
                     if bossFlag[i] == False:
                         bossFlag[i] = True
