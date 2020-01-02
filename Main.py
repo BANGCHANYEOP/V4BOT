@@ -50,7 +50,7 @@ def init():
     tmp_bossData = []
     f = []
 
-    inidata = open('test_setting.ini', 'r', encoding='utf-8')
+    inidata = open("C:/Users/BANG/Documents/V4BOT/test_setting.ini", 'r', encoding='utf-8')
 
     inputData = inidata.readlines()
 
@@ -151,7 +151,7 @@ async def my_background_task():
                     if bossFlag[i] == False:
                         bossFlag[i] = True
 
-                        await channel.send(bossData[i][0] + ' ' + basicSetting[1] + '분 전 ' + bossData[i][3], tts=true)
+                        await channel.send(bossData[i][0] + ' ' + basicSetting[1] + '분 전 ' + bossData[i][3], tts=True)
 
                 if bossTime[i] <= now:
                     # print ('if ', bossTime[i])
@@ -163,7 +163,7 @@ async def my_background_task():
                     tmp_bossTime[i] = bossTime[i]
                     bossTimeString[i] = '99:99:99'
                     bossTime[i] = now + datetime.timedelta(days=365)
-                    await channel.send(bossData[i][0] + '젠 ' + bossData[i][4] , tts=true)
+                    await channel.send(bossData[i][0] + '젠 ' + bossData[i][4] , tts=True)
 
                 if bossMungFlag[i] == True:
                     if (bossTime[i] + datetime.timedelta(days=-365)) <= aftr:
