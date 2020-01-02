@@ -50,7 +50,7 @@ def init():
     tmp_bossData = []
     f = []
 
-    inidata = open('test_setting.ini', 'r', encoding='utf-8')
+    inidata = open("test_setting.ini", 'r', encoding='utf-8')
 
     inputData = inidata.readlines()
 
@@ -110,7 +110,7 @@ init()
 
 nowTimeString = '1'
 
-token = basicSetting[0]
+token = 'NjYxODkzNjc0MDIzNTE4MjQ3.Xg3a_Q.dyXJTPliOmp42u5bhqR90vlybho'
 print (basicSetting[0])
 
 async def my_background_task():
